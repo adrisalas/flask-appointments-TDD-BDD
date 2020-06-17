@@ -22,3 +22,8 @@ There is no database, the data is simulated by the "DataFacade.py" file.
 
 
 ## Screenshots
+![Inicio](resources/inicio.PNG)
+![Login](resources/login.PNG)
+![Pedir](resources/pedir.PNG)
+![Schedule](resources/schedule.PNG)
+![Form](resources/form.PNG)
