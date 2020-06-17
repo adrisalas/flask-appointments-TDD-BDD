@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>COVID-19</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='css/navbar.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='css/singin.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='css/starter-template.css') }}" rel="stylesheet">
+
+    <link rel="icon" type="image" href="{{ url_for('static',filename='img/terminal.png') }}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+</head>
+
+<body>
+    {% if "patient" in session%}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+            <img src="{{ url_for('static',filename='img/logo_UMA.png') }}" alt="Brand" class="nav-logo" />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('areaprivada_citas') }}">Citas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Noticias</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+                <a class="btn btn-light text-primary" href="#">Mi perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light text-primary" href="{{ url_for('logout') }}">
+                    <img class="poweroff" src="{{ url_for('static',filename='img/poweroff.png') }}" />
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% elif "doctor" in session %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+            <img src="{{ url_for('static',filename='img/logo_UMA.png') }}" alt="Brand" class="nav-logo" />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('areaprivada_horario') }}">Horario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ url_for( 'index') }} ">Noticias</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="{{ url_for( 'covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto ">
+            <li class="nav-item mr-2 ">
+                <a class="btn btn-light text-primary " href="#">Mi perfil</a>
+            </li>
+            <li class="nav-item ">
+                <a class="btn btn-light text-primary " href="{{ url_for('logout') }} ">
+                    <img class="poweroff " src="{{ url_for( 'static',filename='img/poweroff.png' ) }} " />
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% else %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top ">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand ">
+            <img src="{{ url_for( 'static',filename='img/logo_UMA.png' ) }} " alt="Brand " class="nav-logo " />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark ">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ url_for( 'index') }}">Inicio</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="{{ url_for( 'covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto ">
+            <li class="nav-item ">
+                <a class="btn btn-light text-primary " href="{{ url_for( 'login') }} ">Login</a>
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+
+    <!-- Main -->
+    <main role="main" class="container">
+
+        <div class="text-center">
+            <h1>Coronavirus (SARS-CoV-2): </h1>
+            <p class="text-danger"><b>ALERTA COVID-19:</b> Actualmente hay 63,148 casos activos en su pais.</p>
+        </div>
+        <div class="container row mt-3 justify-content-md-center">
+            <a type="button" class="btn btn-warning btn-lg btn-block col-6" href="{{url_for('covid_autotest')}}">Auto-test</a>
+        </div>
+        <div class="container row  mt-3 justify-content-md-center">
+            <button onclick="myFunction(2)" type="button" class="btn btn-info btn-lg btn-block col-6">Me han indicado que me aisle o confine en casa</button>
+            <div class="card col-16 mt-1" id="text2" style="display: none;">
+                <div class="card-body">
+                    <p class="card-text">
+                        Si está infectado, lo mejor es que se quede en casa, completamente aislado.
+                        <BR> Algunas recoemndaciones:
+                        <BR> - Reducir lo mínimo posible el contacto con otras personas, especialmente si son personas de riesgo (personas con problemas del corazón, respiratorios o con un sistema inmunológico debilitado).
+                        <BR>- Usar un baño diferente al del resto de personas de la casa.
+                        <BR>- Ventilar la casa adecuadamente.
+                        <BR>- El infectado debería estar en una habitación individual, debidamente ventilada.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container row  mt-3 justify-content-md-center">
+            <button onclick="myFunction(3)" type="button" class="btn btn-info btn-lg btn-block col-6">Me han dado positivo por coronavirus</button>
+            <div class="card col-16 mt-1" id="text3" style="display: none;">
+                <div class="card-body">
+                    <p class="card-text">
+                        Contacte inmediatamente con el personal sanitario de su comunidad haciendo uso del teléfono habilitado para ello. Evite salir a la calle o estar en contacto con otras ersonas y siga las recomendaciones que le proporcione el perosnal sanitaria y que dan
+                        las instituciones sanitarias.
+                        <HR> Telefonos habilitados en cada comunidad:
+                        <BR> Andalucía: 900 400 061
+                        <BR> Aragón: 061
+                        <BR> Asturias: 984 100 400
+                        <BR> Cantabria: 112/061
+                        <BR> Castilla La Mancha: 900 122 112
+                        <BR> Castilla y León: 900 222 000
+                        <BR> Islas Canarias: 900 112 061
+                        <BR> Cataluña: 061
+                        <BR> Ceuta: 900 720 692
+                        <BR> Comunidad de Madrid: 900 102 112
+                        <BR> Comunidad Valenciana: 900 300 555
+                        <BR> Extremadura: 112
+                        <BR> Galicia: 900 400 116
+                        <BR> Islas Baleares: 061
+                        <BR> La Rioja: 941 298 333
+                        <BR> Melilla: 112
+                        <BR> Murcia: 900 121 212
+                        <BR> Navarra: 948 290 290
+                        <BR> País Vasco: 900 203 050
+                        <BR>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container row  mt-3 justify-content-md-center">
+            <button onclick="myFunction(4)" type="button" class="btn btn-info btn-lg btn-block col-6">Tengo dudas sobre el coronavirus</button>
+            <div class="card col-16 mt-1" id="text4" style="display: none;">
+                <div class="card-body">
+                    <p class="card-text">
+                        Visite nuestro F.A.Q (preguntas frecuentes) en la dirección www.preguntasfrecuentescoronavirus.es
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container row  mt-3 justify-content-md-center">
+            <button onclick="myFunction(5)" type="button" class="btn btn-info btn-lg btn-block col-6">¿Cuáles son los síntomas?</button>
+            <div class="card col-16 mt-1" id="text5" style="display: none;">
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Síntomas comunes</b>
+                        <BR> Fiebre
+
+                        <BR> Tos seca
+                        <BR> Cansancio
+                        <HR>
+
+                        <b>Síntomas menos comunes</b>
+                        <BR> Dolor de garganta
+                        <BR> Dolor generalizado
+                        <BR> Dolor de garganta
+                        <BR> Diarrea
+                        <BR> Conjuntivitis
+                        <BR> Dolor de cabeza
+                        <BR> Pérdida del sentido del gusto o del olfato
+                        <BR> Decoloración de los dedos de las manos o los pies
+                        <BR> Erupciones en la piel
+                        <HR>
+
+                        <b>Síntomas serios</b>
+                        <BR> Dificultad al respirar
+                        <BR> Falta de aire
+                        <BR> Dolor o presión en el pecho
+                        <BR> Pérdida del habla o movimiento
+                        <HR> Busque atención médica inmediatamente si tiene alguno de los síntomas serios. Siempre llame antes de visitar a su médico o ir a una institución sanitaria.
+                        <BR> Personas con síntomas que no graves pero que están bien debería tratarse los síntomas en casa.
+                        <BR> De media, a un infectado le toma 5 o 6 días mostrar síntomas, pero este periodo asintomático puede durar hasta 14 días.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Formulario realizado correctamente</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    Hemos guardado su información y será procesada.
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- /.container -->
+    <script>
+        function myFunction(id) {
+            for (var i = 2; i < 6; i++) {
+                var card = document.getElementById("text".concat(i));
+                if (i == id) {
+                    card.style.display = (card.style.display == "none") ? "block" : "none";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')
+    </script>
+</body>
+
+</html>

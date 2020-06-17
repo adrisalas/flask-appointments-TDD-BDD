@@ -1,0 +1,64 @@
+/* Main nav */
+
+.navbar {
+    color: wheat;
+    position: relative;
+    top: 0px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.nav-item:hover {
+    font-size: 20px;
+}
+
+.nav-logo {
+    width: 45px;
+    border-radius: 15px;
+}
+
+.poweroff {
+    width: 17px;
+}
+
+
+/* Main */
+
+h1.display-4 {
+    font-size: 35px;
+    margin-left: 20%;
+    margin-top: 3%;
+}
+
+
+/* Carousel */
+
+.carousel {
+    margin-left: 70px;
+    margin-top: 200px;
+}
+
+.carousel-inner img {
+    border-radius: 10px;
+}
+
+
+/* Cards/ News */
+
+.card-img {
+    height: 100%;
+}
+
+
+/* Table-Doctor */
+
+.mainDoctor {
+    margin-left: 20%;
+}
+
+
+/* Client */
+
+.mainClient {
+    margin-left: 20%;
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="icon" type="image" href="{{ url_for('static',filename='img/terminal.png') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <title>Inicio</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='css/navbar.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static',filename='css/singin.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    {% if "patient" in session%}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+            <img src="{{ url_for('static',filename='img/logo_UMA.png') }}" alt="Brand" class="nav-logo" />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('areaprivada_citas') }}">Citas</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('index') }}">Noticias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item mr-2">
+                <a class="btn btn-light text-primary" href="#">Mi perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light text-primary" href="{{ url_for('logout') }}">
+                    <img class="poweroff" src="{{ url_for('static',filename='img/poweroff.png') }}" />
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% elif "doctor" in session %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand">
+            <img src="{{ url_for('static',filename='img/logo_UMA.png') }}" alt="Brand" class="nav-logo" />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('areaprivada_horario') }}">Horario</a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link " href="{{ url_for( 'index') }} ">Noticias</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="{{ url_for( 'covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto ">
+            <li class="nav-item mr-2 ">
+                <a class="btn btn-light text-primary " href="#">Mi perfil</a>
+            </li>
+            <li class="nav-item ">
+                <a class="btn btn-light text-primary " href="{{ url_for('logout') }} ">
+                    <img class="poweroff " src="{{ url_for( 'static',filename='img/poweroff.png' ) }} " />
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% else %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top ">
+        <!-- Logo -->
+        <a href="{{ url_for('index') }}" class="navbar-brand ">
+            <img src="{{ url_for( 'static',filename='img/logo_UMA.png' ) }} " alt="Brand " class="nav-logo " />
+        </a>
+        <!-- Links -->
+        <div class="navbar-dark ">
+            <ul class="navbar-nav ">
+                <li class="nav-item active ">
+                    <a class="nav-link " href="{{ url_for( 'index') }}">Inicio</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " href="{{ url_for( 'covid') }}">COVID-19</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav ml-auto ">
+            <li class="nav-item ">
+                <a class="btn btn-light text-primary " href="{{ url_for( 'login') }} ">Login</a>
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+    <!-- Main -->
+    <div class="col-lg-7 ">
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide" data-ride="carousel">
+            {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, msg in messages %} {% if category == "error": %}
+            <div class="alert alert-danger" role="alert">
+                {% else:%}
+                <div class="alert alert-success" role="alert">
+                    {% endif %} {{msg}}
+                </div>
+                {% endfor %} {% endif %} {% endwith %}
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner ">
+                    <div class="carousel-item active">
+                        <img src="{{ url_for( 'static',filename='img/consejos.png' ) }} " width="800 " height="500 " />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ url_for( 'static',filename='img/encontrarsemal.png' ) }} " width="800 " height="500 " />
+                    </div>
+                </div>
+            </div>
+            <h1 class="display-4 text-primary ">¿Cómo combatir al COVID-19?</h1>
+            <p class="ml-5 ">
+                Hasta la fecha, no hay vacunas o medicamentos específicos contra la COVID-19. <br> Cuidados personales: <br> Si se siente enfermo debe descansar, beber mucho líquido y comer alimentos nutritivos. <br> Permanezca en una habitación separada
+                de los demás miembros de la familia y utilice un baño exclusivamente para usted si es posible. <br> Limpie y desinfecte frecuentemente las superficies que toque. <br> Todas las personas deben mantener un estilo de vida saludable en casa.
+                <br> Lleve una dieta saludable, duerma, manténgase activo y establezca contacto social con los seres queridos a través del teléfono o internet. <br> Los niños necesitan dosis adicionales de cariño y atención de los adultos durante los
+                momentos difíciles. <br> Mantenga rutinas y horarios regulares en la medida de lo posible. <br> Es normal sentirse triste, estresado o confundido durante una crisis. <br> Hablar con personas en las que confíe, como amigos y familiares,
+                le puede ayudar. Si se siente abrumado, hable con un trabajador de la salud o un consejero. <br>
+            </p>
+        </div>
+
+        <!-- Cards/News -->
+        <div class="col-lg-5 ">
+            <div class="card mb-3 card-new ">
+                <div class="row no-gutters ">
+                    <div class="col-md-4 ">
+                        <img src="{{ url_for( 'static',filename='img/coronavirus1.jpeg' ) }} " class="card-img " />
+                    </div>
+                    <div class="col-md-8 ">
+                        <div class="card-body ">
+                            <h5 class="card-title ">La crisis del Coronavirus</h5>
+                            <p class="card-text ">
+                                La crisis del coronavirus puede durar dos años y contagiará a un 70% de la población, según un estudio...
+                            </p>
+                            <a class="btn btn-sm btn-primary ml-auto " href="https://www.20minutos.es/noticia/4245284/0/crisis-coronavirus-durar-anos-contagio-poblacion/ " target="blank ">Read More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3 card-new ">
+        <div class="row no-gutters ">
+          <div class="col-md-4 ">
+            <img src="{{ url_for( 'static',filename='img/coronavirus2.jpg' )}} " class="card-img " />
+          </div>
+          <div class="col-md-8 ">
+            <div class="card-body ">
+              <h5 class="card-title ">El coronavirus hasta agosto</h5>
+              <p class="card-text ">
+                La Universidad de Tecnología y Diseño de Singapur vaticina que
+                el virus no se extinguirá en el mundo hasta diciembre.
+              </p>
+              <a
+                class="btn btn-sm btn-primary ml-auto "
+                href="https://www.lavanguardia.com/vida/20200503/48936142716/prediccion-coronavirus-espana-agosto-universidad-de-singapur-estudio-monitoreo-predictivo-virus.html "
+                target="blank "
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3 card-new ">
+        <div class="row no-gutters ">
+          <div class="col-md-4 ">
+            <img src="{{ url_for( 'static',filename='img/coronavirus3.jpg' )}} " class="card-img " />
+          </div>
+          <div class="col-md-8 ">
+            <div class="card-body ">
+              <h5 class="card-title ">
+                Coronavirus en Málaga, ¿está decayendo?
+              </h5>
+              <p class="card-text ">
+                Granada y Sevilla superan a Málaga en pacientes que permanecen
+                en la UCI, pese a tener menos contagiados.
+              </p>
+              <a
+                class="btn btn-sm btn-primary ml-auto "
+                href="https://www.laopiniondemalaga.es/malaga/2020/05/03/contagios-frenan-malaga-reduce-pacientes/1163431.html "
+                target="blank "
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
